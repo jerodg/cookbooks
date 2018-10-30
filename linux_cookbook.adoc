@@ -1,0 +1,432 @@
+:doctype: book
+:docdate: October 31, 2017
+:author: Jerod Gawne
+:email: jerodgawne@gmail.com
+:revlinenums: 0.0.12
+:revdate: May 08, 2018
+:revremark: update email address
+:description: Collection of linux snippets
+:library: Asciidoctor
+:keywords: linux, cookbook, snippets, gist
+:sectanchors:
+:sectlinks:
+:sectnums:
+:toc:
+:source-highlighter: coderay
+:checkedbox: pass:normal[{startsb}&#10004;{endsb}]
+:checkbox: pass:normal[{startsb}  {endsb}]
+:experimental:
+:icons: font
+
+= Linux Cookbook
+
+Linux Snippets
+
+== Append Current Date to Filename
+.Store to variable
+[source,bash,linenums]
+#!/bin/bash
+$(date + "%m_%d%Y")
+
+or
+
+[source,bash,linenums]
+#!/bin/bash
+`date +"%m_%d_%Y"`
+
+// <<linux_cookbook.adoc#"Format Control Characters Supported by GNU/date",Date format control characters>>
+
+== Current Linux Version
+[source,bash,linenums]
+#!/bin/bash
+cat /etc/*-release
+
+== Current Python Version
+[source,bash,linenums]
+python -V
+python3 -V
+
+== Count Lines in File
+[source,bash,linenums]
+wc -l <file-path>
+
+Or, to omit the <filename> from the result:
+[source,bash,linenums]
+wc -l < <file-path>
+
+== Accurev: Copy Stream to Filesystem
+[source,bash,linenums]
+accurev pop -R -v BI_Staging -L ~/bi_staging/ /./
+
+== Accurev: Display Last 10 Transactions, Verbose Output
+[source,bash,linenums]
+accurev hist -s BI_Staging -t now.10 -fv
+
+== Compress (Gzip) Files Recursively
+[source,bash,linenums]
+tar -zcvf <destination-filename>.tar.gz [<destination-folder>]<destination-filename>
+
+== Format Control Characters Supported by GNU/date
+FORMAT control characters supported by the GNU/date command.
+
+[cols=2*,options=header]
+|===
+include::./include/gnu_date_format_control_characters.csv[]
+|===
+
+== Top 10 Files/Folders
+[source,bash,linenums]
+du -a / | sort -n -r | head -n 10
+
+or for more human-readable
+
+[source,bash,linenums]
+du -hsx /* | sort -rh | head -10
+
+or recursively
+
+[source,bash,linenums]
+find <search-path> -type f -printf "%s\t%p\n" | sort -n | tail -1
+
+== Determine the DB2 LUW Product, Version and Fix Pack level of an Instance
+[source,bash,linenums]
+/opt/ibm/db2/V9.7/bin/./db2level
+
+== Enterprise Linux CentOS/RHEL/Oracle 6.x and older (pre systemd) Services
+=== List/Filter Running Services
+This also works on crashed processes
+
+[source,bash,linenums]
+service --status-all [ | grep <service-name> ]
+
+=== List All Known Services (configured via SysV)
+[source,bash,linenums]
+chkconfig --list
+
+=== List Service & Open Ports
+[source,bash,linenums]
+netstat -tulpn
+
+== See What Groups a User Belongs To
+[source,bash,linenums]
+groups <user_name>
+
+https://www.howtogeek.com/howto/ubuntu/see-which-groups-your-linux-user-belongs-to/[How to Geek]
+
+== Change Users Group Membership
+[source,bash,linenums]
+usermod -aG <group1>[,<group2>,<group3>] <username>
+
+The -a flag appends the groups (otherwise it's a replace action)
+The -G flag specifies that groups are secondary
+
+TIP: Enterprise Linux Flavors (CentOS, RHEL) use group 'wheel' for sudo access
+
+== View All Groups
+[source,bash,linenums]
+cat /etc/group
+
+== Find Process
+[source,bash,linenums]
+ps -AF | grep <search-term>
+
+== Investigate Mail Server
+[source,bash,linenums]
+lsof -i :25
+netstat -pat | grep smtp
+nslookup -q=mx litle.com
+dig litle.com MX
+
+== Useful Aliases
+-A: Almost all; Ignore implied . and .. folders +
+-g: Group directories first +
+-h: Human Readable (with -l) display file sizes in human readable format +
+-l: Use long-listing format +
+--color: colorize output; =auto  emits color codes only when standard output
+is connected to a terminal +
+[source,bash,linenums]
+alias ls="ls -Aghl --color=auto"
+
+== Show Free/Used Disk Space
+[source,bash,linenums]
+df -hH <file-or-folder-path>
+
+== Add multiple push URLs to a single git remote
+Sometimes you need to keep two upstreams in sync with each other. For example,
+you might need to both push to your testing environment and your Git Hub repo at
+the same time. In order to do this simultaneously in one git command, here's a
+little trick to add multiple push URLs to a single remote.
+
+Once you have a remote set up for one of your upstreams, run these commands with:
+
+[source,bash,linenums]
+git remote set-url --add --push [remote] [original repo URL]
+git remote set-url --add --push [remote] [second repo URL]
+
+Once set up, git remote -v should show two (push) URLs and one (fetch) URL.
+
+Something like this:
+[source, sh, 'linenums']
+$ git remote -v
+origin git@github.com:bjmiller121/original-repo.git (fetch)
+origin git@github.com:bjmiller121/original-repo.git (push)
+origin git@github.com:bjmiller121/second-repo.git (push)
+
+Now, pushing to this remote will push to both upstreams simultaneiously.
+Fetch and pull from this remote will still pull from the original repo only.
+
+TIP: If you always want to push to both upstreams simultaneously, you might want
+to use the origin remote. If you only sometimes want to push to both, you might
+use a remote name like both to indicate that it will push to multiple repos.
+
+== Start and stop Zabbix agent in Linux OS.
+Stop Zabbix agent: /etc/init.d/zabbix-agent stop
+
+Start Zabbix agent: /etc/init.d/zabbix-agent start
+
+== Show Non-Printable Characters with cat
+[source,python,linenums]
+cat -v
+
+== Install Python From Source
+* https://danieleriksson.net/2017/02/08/how-to-install-latest-python-on-centos/[Daniel Eriksson]
+* https://devguide.python.org/setup/[PyDocs]
+
+[source,sh,linenums]
+Ensure source packages are enabled in sources list
+sudo apt-get update
+// sudo apt-get install build-dep python3.7
+cd /var/tmp
+wget https://www.python.org/ftp/python/3.7.0/Python-3.7.0b3.tgz
+tar xf Python-3.*.tgz
+cd Python-3.*
+./configure --enable-optimizations --enable-shared --prefix=/usr/local
+sudo make && make altinstall
+strip /usr/local/lib/libpython3.*m.so.1.0
+echo 'export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:/usr/local/lib' >> /etc/profile.d/python.sh
+echo 'export PATH=${PATH}:/usr/local/bin/' >> /etc/profile.d/python.sh
+echo '/usr/local/lib' >> /etc/ld.so.conf
+ldconfig
+
+=== Install Prerequisites
+[source,sh,linenums]
+sudo yum -y install gcc gcc-c++ zlib zlib-devel libffi-devel openssl-devel python-devel sqlite-devel libsqlite3-dev
+
+NOTE: for python ibm_db
+[source,sh,linenums]
+yum install libiodbc
+echo 'export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:/opt/ibm/db2/V9.7/lib64/' >> /etc/profile.d/python.sh
+if db2 is not installed in the default location:
+export IBM_DB_HOME=/opt/phxinst1/sqllib/
+pip3 install ...
+
+https://docs.snowflake.net/manuals/user-guide/odbc-linux.html#driver-manager-iodbc-or-unixodbc[Snowflake.net]
+https://www.ibm.com/support/knowledgecenter/en/SSEPGG_9.5.0/com.ibm.db2.luw.apdv.python.doc/doc/t0054367.html[IBM Docs]
+https://www.ibm.com/support/knowledgecenter/en/SSEPGG_10.5.0/com.ibm.swg.im.dbclient.python.doc/doc/t0054367.html[IBM Docs]
+
+NOTE: for rhel
+https://stackoverflow.com/questions/27022373/python3-importerror-no-module-named-ctypes-when-using-value-from-module-mul[Stack Overflow]
+
+.For Ubuntu/Debian
+[source,sh,linenums]
+sudo apt-get -y install build-essential python-dev python-setuptools python-pip libncursesw5-dev libgdbm-dev libc6-dev zlib1g-dev python-smbus libssl-dev openssl libffi-dev libsqlite3-dev sqlite-devel
+
+== Install Single Node Hadoop Cluster
+https://hadoop.apache.org/docs/current/hadoop-project-dist/hadoop-common/SingleCluster.html[Hadoop Docs]
+https://askubuntu.com/questions/761127/how-do-i-install-openjdk-7-on-ubuntu-16-04-or-higher#761527[Ask Ubuntu-Option #2]
+[source,sh,linenums]
+sudo apt-get update
+cd /var/tmp
+wget http://ftp.us.debian.org/debian/pool/main/o/openjdk-7/openjdk-7-jdk_7u161-2.6.12-1_amd64.deb
+sudo dpkg -i openjdk-7*.deb
+sudo apt-get install default-jdk ssh pdsh
+
+== Unlock User Account
+[source,bash,linenums]
+passwd -u <user_name>
+
+== Git: Change Author/Committer Name/Email
+Reference: https://help.github.com/articles/changing-author-info/[GitHub]
+
+[source,bash,linenums]
+#!/bin/sh
+git filter-branch --force --env-filter '
+export GIT_AUTHOR_NAME="<author_name>"
+export GIT_AUTHOR_EMAIL="<author_email>"
+export GIT_COMMITTER_NAME="<committer_name>"
+export GIT_COMMITTER_EMAIL="<committer_email"
+' --tag-name-filter cat -- --branches --tags
+
+== Git: Remove File From History
+Reference: https://help.github.com/articles/removing-sensitive-data-from-a-repository/[GitHub]
+https://git-scm.com/book/en/v2/Git-Tools-Rewriting-History[Git-Scm Book]
+
+[source,bash,linenums]
+#!/bin/sh
+git rm --cached "<file_path>"
+git filter-branch --force --index-filter '
+git rm --cached --ignore-unmatch "<file_path>"
+' --prune-empty --tag-name-filter cat -- --all
+
+== Git: Find Deleted File From History
+Reference: https://stackoverflow.com/a/13012192/4434405[StackOverflow]
+
+[source,bash,linenums]
+git log --raw | grep -B 30 $'D\t.*<file_name>'
+
+== Git: Rename local and remote branches
+If you have named a branch incorrectly and pushed this to the remote repository
+follow these steps before anyone notices.
+
+Reference: http://www.w3docs.com/snippets/git/how-to-rename-git-local-and-remote-branches.html[W3docs]
+
+* Rename your local branch.
+** If you are on the branch you want to rename:
+[source,bash,linenums]
+git branch -m <new-name>
+
+** If you are on a different branch:
+[source,bash,linenums]
+git branch -m old-name new-name
+
+* Delete the old-name remote branch and push the new-name local branch.
+[source,bash,linenums]
+git push origin :old-name new-name
+
+* Reset the upstream branch for the new-name local branch.
+** Switch to the branch and then:
+[source,bash,linenums]
+git push origin -u new-name
+
+* Or you as a fast way to do that, you can use these 3 steps:
+[source,bash,linenums]
+git branch -m <old_branch> <new_branch>         # Rename branch locally
+git push origin :<old_branch>                   # Delete the old branch
+git push --set-upstream origin <new_branch>     # Push the new branch, set local branch to track the new remote
+
+== Git: Generate/Use SSH Key
+Reference: http://www.w3docs.com/snippets/git/how-to-generate-ssh-key-for-git.html[W3docs]
+
+Why we need SSH key
+How to find my pc's SSH key
+How to generate new SSH key
+How to connect my pc with my github account with SSH key
+All these are for Linux ( Ubuntu )
+Why we need SSH key
+As you know, if you use git and want to clone anything from remote repositories, you have to choose one of these 2 ways: HTTPS or SSH. If you use HTTPS way, you have to type your account's access every time you communicate with remote repository, or change your configs and fill your account's data (access),but there is one way too, which is more modern way. That is SSH authentication method.It's used in many Version Control Systems (as git), to have command line access into your servers etc... SSH key pairs can be used instead of passwords for authentication, and each key pair consists of a private key and a corresponding public key. When you use SSH key for git, you say git that this PC is authenticated for that github's account, and never ask me again about any access, because I have already given you my SSH key (for this pc) and told you which access has this SSH key (this PC).
+
+Now lets find out how we can checkout PC's SSH keys.
+
+Checking My PC's SSH Keys
+Step 1: Open Terminal
+
+Step 2: Type ls -al ~/.ssh to see your ssh keys
+
+[source,bash,linenums]
+ls -al ~/.ssh
+
+Your .ssh files lists directory, if they exist
+By default, the filenames of the public keys are one of the following:
+id_dsa.pub
+id_ecdsa.pub
+id_ed25519.pub
+id_rsa.pub
+
+Generate a new SSH key.Add to the ssh-agent
+Step 1: Open Terminal
+
+Step 2: Type this below, using your GitHub's account email
+
+[source,bash,linenums]
+ssh-keygen -t rsa -b 4096 -C "[your github's email]"
+
+Creates a new ssh key
+Generating public/private rsa key pair.
+Step 3: It will show up this text and you can hit Enter
+
+Enter a file in which to save the key (/Users/you/.ssh/id_rsa): [Press enter]
+Step 4: In this section you can hit Enter too or type secure passphrase (more about passphrase).
+
+Enter passphrase (empty for no passphrase): [Type a passphrase]
+Enter same passphrase again: [Type passphrase again]
+Adding SSH key to the ssh-agent
+Now lets find out how we can add SSH key to ssh-agent.
+
+Before adding, check your ssh keys or generate new key.
+
+Step 1: Be sure ssh-agent is enabled
+
+start the ssh-agent in the background
+[source,bash,linenums]
+eval "$(ssh-agent -s)"
+
+Agent pid 59566
+Step 2: Add your SSH key to the ssh-agent.If you used an existing SSH key rather than generating a new SSH key, you'll need to replace id_rsa in the command with the name of your existing private key file.
+
+[source,bash,linenums]
+ssh-add ~/.ssh/id_rsa
+
+How To Add SSH Key To Github Account
+Step 1: Login into your Github's account.In the top right corner of any page, click your profile photo, then click Settings.
+
+Step 2: In the user settings sidebar, go to SSH and GPG keys.
+
+Step 3: Click New SSH key.
+
+Step 4: Type Title and your SSH Key
+
+You can get your ssh key by typing below.
+
+[source,bash,linenums]
+cat .ssh/id_rsa.pub
+
+something like this
+ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC5uy0aRcQkRDwBK0c+MRw4lnVwQW9qYKtMRdjHdHUwPYqV9c8jax ....
+Step 5: then hit Add SSH key
+
+Now you have added your PC's SSH key to your Github's account.
+
+== Force SSH to Use Password Authentication
+[source,bash,linenums]
+ssh -o PreferredAuthentications=password -o PubkeyAuthentication=no user@host
+scp -o PreferredAuthentications=password -o PubkeyAuthentication=no local.file user@host:/path/to/remote.file
+
+.Reference
+https://makandracards.com/makandra/1326-force-ssh-client-to-use-password-authentication-instead-of-public-key[Makandra Cards]
+
+
+== Split file into equal parts by line number
+[source,bash,linenums]
+split -l <line-nums> <infile> [<outfile>]
+
+.Reference
+https://stackoverflow.com/a/24744278/4434405
+
+== Find Top 10 Newest Files
+
+[source,bash,linenums]
+find . -type f -printf "%c@ %p\n" | sort -rn | head -10
+
+== Find Text in Files
+[source,bash,linenums]
+grep -rnw '</path/to/somewhere/>' -e '<pattern>'
+grep -rnw '/' -e '*VAP_PAYMENTS_ADDITIONAL_DATA*'
+
+== Recursively counting files in a Linux directory
+[source,bash,linenums]
+find <path/to/search> -type f | wc -l
+find /var/tmp -type f | wc -l
+
+https://stackoverflow.com/questions/9157138/recursively-counting-files-in-a-linux-directory#9157162[Stack Overflow]
+
+== Reference:
+https://www.git-tower.com/learn/git/faq/change-author-name-email[Git-Tower]
+https://stackoverflow.com/questions/27022373/python3-importerror-no-module-named-ctypes-when-using-value-from-module-mul[Stack Overflow] +
+https://danieleriksson.net/2017/02/08/how-to-install-latest-python-on-centos/[Daniel Eriksson] +
+https://gist.github.com/bjmiller121/f93cd974ff709d2b968f[GitHubGist] +
+https://www.tecmint.com/how-to-kill-a-process-in-linux/[Tecmint] +
+https://stackoverflow.com/a/3137099/4434405[StackOverflow] +
+https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux_OpenStack_Platform/2/html/Getting_Started_Guide/ch02s03.html[RedHat Documentation] +
+https://www.computerhope.com/unix/uchown.htm[Computer Hope] +
+http://www.hostingadvice.com/how-to/linux-add-user-to-group/[Hosting Advice] +
+https://www.ibm.com/support/knowledgecenter/en/SSVV6P/Monitoring/startandstopzabbixagentinlinuxos.html[IBM Knowledge Center] +

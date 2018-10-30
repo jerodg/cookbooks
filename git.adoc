@@ -1,0 +1,48 @@
+:doctype: book
+:doctitle:
+:docdate: January 25, 2018
+:author: Jerod Gawne
+:email: jerodgawne@gmail.com
+:revnumber: 0.0.4
+:revdate: May 08, 2018
+:revremark: updated email, added source for optional, formatting
+:description: code/information on setting up git
+:keywords: linux, cookbook, snippets, git
+:source-highlighter: highlight.js
+:sectanchors:
+:sectlinks:
+:sectnums:
+:toc:
+
+= Git Cookbook
+
+Code & Information on setting up git on a new computer.
+
+== Windows
+[source,bash,numbered]
+git config --global user.name "<First Last>"
+git config --global user.email "<user@domain.ext>"
+gpg --import "<gpg-location>"
+git config --global user.signingkey <keyid>
+git config --global commit.gpgsign true
+git config --global gpg.program "C:\Program Files (x86)\GnuPG\bin\gpg.exe"
+
+== Linux
+[source,bash,numbered]
+git config --global user.name "<First Last>"
+git config --global user.email "<user@domain.ext>"
+gpg --import "<gpg-location>"
+git config --global user.signingkey <keyid>
+git config --global commit.gpgsign true
+
+== Optional for Either
+[source,bash,numbered]
+git config --global http.proxy http://proxyuser:proxypwd@proxy.server.com:8080
+git config --global https.proxy http://proxyuser:proxypwd@proxy.server.com:8080
+git config --global credential.helper 'cache --timeout=3600'
+
+.Reference
+https://jamesmckay.net/2016/02/signing-git-commits-with-gpg-on-windows/[James McKay] +
+https://git-scm.com/book/id/v2/Git-Tools-Signing-Your-Work[Git-Scm] +
+https://stackoverflow.com/a/19213999/4434405[Stack Overflow 1] +
+https://stackoverflow.com/questions/783811/getting-git-to-work-with-a-proxy-server[Stack Overflow 2]
