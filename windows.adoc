@@ -1,5 +1,4 @@
 :doctype: book
-:doctitle: 
 :docdate: February 22, 2018
 :author: Jerod Gawne
 :email: jerodgawne@gmail.com
