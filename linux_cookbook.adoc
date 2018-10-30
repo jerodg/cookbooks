@@ -229,7 +229,7 @@ https://stackoverflow.com/questions/27022373/python3-importerror-no-module-named
 
 .For Ubuntu/Debian
 [source,sh,linenums]
-sudo apt-get -y install build-essential python-dev python-setuptools python-pip libncursesw5-dev libgdbm-dev libc6-dev zlib1g-dev python-smbus libssl-dev openssl libffi-dev libsqlite3-dev sqlite-devel
+sudo apt-get -y install build-essential python-dev python-setuptools python-pip libncursesw5-dev libgdbm-dev libc6-dev zlib1g-dev python-smbus libssl-dev openssl libffi-dev libsqlite3-dev
 
 == Install Single Node Hadoop Cluster
 https://hadoop.apache.org/docs/current/hadoop-project-dist/hadoop-common/SingleCluster.html[Hadoop Docs]
