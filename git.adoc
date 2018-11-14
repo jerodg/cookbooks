@@ -50,8 +50,29 @@ Or
 [source,bash]
 git push <remote> <branch with new changes>:<branch you are pushing to> 
 
+== Undo/Redo a Commits
+[source,bash]
+git commit -m "Something terribly misguided"             
+git reset HEAD~                                          
+<< edit files as necessary >>                              
+git add ...                                              
+git commit -c ORIG_HEAD                                  
+
+This is what you want to undo
+This leaves your working tree (the state of your files on disk) unchanged but undoes the commit and leaves the changes you committed unstaged (so they'll appear as "Changes not staged for commit" in git status, and you'll need to add them again before committing). If you only want to add more changes to the previous commit, or change the commit message1, you could use git reset --soft HEAD~ instead, which is like git reset HEAD~ (where HEAD~ is the same as HEAD~1) but leaves your existing changes staged.
+Make corrections to working tree files.
+git add anything that you want to include in your new commit.
+Commit the changes, reusing the old commit message. reset copied the old head to .git/ORIG_HEAD; commit with -c ORIG_HEAD will open an editor, which initially contains the log message from the old commit and allows you to edit it. If you do not need to edit the message, you could use the -C option.
+Beware however that if you have added any new changes to the index, using commit --amend will add them to your previous commit.
+
+If the code is already pushed to your server and you have permissions to overwrite history (rebase) then:
+
+[source,bash]
+git push origin master --force
+
 .Reference
 https://jamesmckay.net/2016/02/signing-git-commits-with-gpg-on-windows/[James McKay] +
 https://git-scm.com/book/id/v2/Git-Tools-Signing-Your-Work[Git-Scm] +
-https://stackoverflow.com/a/19213999/4434405[Stack Overflow 1] +
-https://stackoverflow.com/questions/783811/getting-git-to-work-with-a-proxy-server[Stack Overflow 2]
+https://stackoverflow.com/a/19213999/4434405[Stack Overflow] +
+https://stackoverflow.com/questions/783811/getting-git-to-work-with-a-proxy-server[Stack Overflow] +
+https://stackoverflow.com/a/927386/4434405[Stack Overflow] +
