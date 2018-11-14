@@ -210,7 +210,7 @@ ldconfig
 
 === Install Prerequisites
 [source,sh,linenums]
-sudo yum -y install gcc gcc-c++ zlib zlib-devel libffi-devel openssl-devel python-devel sqlite-devel libsqlite3-dev
+sudo yum -y install gcc gcc-c++ zlib zlib-devel libffi-devel openssl-devel python-devel sqlite-devel libsqlite3-dev krb5-devel krb5-workstation
 
 NOTE: for python ibm_db
 [source,sh,linenums]
@@ -231,7 +231,7 @@ https://stackoverflow.com/questions/27022373/python3-importerror-no-module-named
 [source,sh,linenums]
 sudo apt-get -y install build-essential python-dev python-setuptools python3-pip
 libncursesw5-dev libgdbm-dev libc6-dev zlib1g-dev python-smbus libssl-dev
-openssl libffi-dev libsqlite3-dev
+openssl libffi-dev libsqlite3-dev libxml2-dev libxslt1-dev libkrb5-dev
 
 sudo apt install python3.7-dev python3-pip python3.7-setuptools
 
@@ -239,7 +239,7 @@ build-essential opensll libssl-dev libsqlite3-dev zlib1g zlib1g-dev
 
 .ubuntu 16.10+
 [source,sh,linenums]
-sudo apt install build-essential libncursesw5-dev libssl-dev libgdbm-dev libc6-dev libsqlite3-dev libbz2-dev liblzma-dev libreadline-gplv2-dev libdb-dev binutils binfmt-support
+sudo apt install build-essential libncursesw5-dev libssl-dev libgdbm-dev libc6-dev libsqlite3-dev libbz2-dev liblzma-dev libreadline-gplv2-dev libdb-dev binutils binfmt-support libxml2-dev libxslt1-dev libkrb5-dev
 cd /var/tmp
 wget https://www.python.org/ftp/python/3.7.1/Python-3.7.1.tgz
 tar xf Python-3.*.tgz
