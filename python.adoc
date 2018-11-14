@@ -1,0 +1,17 @@
+:doctype: book
+:docdate: November 14, 2018
+:author: Jerod Gawne
+:email: jerodgawne@gmail.com
+:description: python setup
+:keywords: python, linux, windows
+:sectanchors:
+:sectlinks:
+:sectnums:
+:toc:
+
+= Python Cookbook
+
+== Create a Package
+python setup.py sdist
+gpg --detach-sign -a dist/*
+twine upload dist/*
