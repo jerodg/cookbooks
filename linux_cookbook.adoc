@@ -229,7 +229,43 @@ https://stackoverflow.com/questions/27022373/python3-importerror-no-module-named
 
 .For Ubuntu/Debian
 [source,sh,linenums]
-sudo apt-get -y install build-essential python-dev python-setuptools python-pip libncursesw5-dev libgdbm-dev libc6-dev zlib1g-dev python-smbus libssl-dev openssl libffi-dev libsqlite3-dev
+sudo apt-get -y install build-essential python-dev python-setuptools python3-pip
+libncursesw5-dev libgdbm-dev libc6-dev zlib1g-dev python-smbus libssl-dev
+openssl libffi-dev libsqlite3-dev
+
+sudo apt install python3.7-dev python3-pip python3.7-setuptools
+
+build-essential opensll libssl-dev libsqlite3-dev zlib1g zlib1g-dev
+
+.ubuntu 16.10+
+[source,sh,linenums]
+sudo apt install build-essential libncursesw5-dev libssl-dev libgdbm-dev libc6-dev libsqlite3-dev libbz2-dev liblzma-dev libreadline-gplv2-dev libdb-dev binutils binfmt-support
+cd /var/tmp
+wget https://www.python.org/ftp/python/3.7.1/Python-3.7.1.tgz
+tar xf Python-3.*.tgz
+cd Python-3.*
+./configure --enable-optimizations --enable-shared
+sudo make && make install
+strip /usr/local/lib/libpython3.*m.so.1.0
+echo 'export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:/usr/local/lib' >> /etc/profile.d/python.sh
+echo 'export PATH=${PATH}:/usr/local/bin/' >> /etc/profile.d/python.sh
+// echo '/usr/local/lib' >> /etc/ld.so.conf
+ldconfig
+
+
+suggested:
+python3.7-venv python3.7-doc binutils binfmt-support
+libpython3.7-minimal libpython3.7-stdlib python3.7-minimal
+
+
+gcc-8-locales debian-keyring g++-multilib g++-8-multilib libstdc++6-8-dbg
+  gcc-multilib autoconf automake libtool flex bison gdb gcc-8-multilib libgcc1-dbg libgomp1-dbg libitm1-dbg
+  libatomic1-dbg libasan5-dbg liblsan0-dbg libtsan0-dbg libubsan1-dbg libmpx2-dbg libquadmath0-dbg bzr
+  gnome-keyring libkf5wallet-bin gir1.2-gnomekeyring-1.0
+
+
+https://askubuntu.com/questions/21547/what-are-the-packages-libraries-i-should-install-before-compiling-python-from-so[Ask Ubuntu]
+https://devguide.python.org/setup/#build-dependencies[PyDocs]
 
 == Install Single Node Hadoop Cluster
 https://hadoop.apache.org/docs/current/hadoop-project-dist/hadoop-common/SingleCluster.html[Hadoop Docs]

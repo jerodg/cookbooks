@@ -1,0 +1,19 @@
+:doctype: book
+:docdate: October 31, 2018
+:author: Jerod Gawne
+:email: jerodgawne@gmail.com
+:revdate: May 08, 2018
+:description: Windows 10 Settings
+:library: Asciidoctor
+:keywords: windows, settings, configuration
+:sectanchors:
+:sectlinks:
+:sectnums:
+:toc:
+:checkedbox: pass:normal[{startsb}&#10004;{endsb}]
+:checkbox: pass:normal[{startsb}  {endsb}]
+:experimental:
+:icons: font
+
+= Windows 10 Settings/Configuration
+https://www.howtogeek.com/269331/how-to-disable-all-of-windows-10s-built-in-advertising/[How To Geek]

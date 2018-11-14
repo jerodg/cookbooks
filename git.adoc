@@ -41,6 +41,15 @@ git config --global http.proxy http://proxyuser:proxypwd@proxy.server.com:8080
 git config --global https.proxy http://proxyuser:proxypwd@proxy.server.com:8080
 git config --global credential.helper 'cache --timeout=3600'
 
+== Push Commits to Another Branch
+[source,bash]
+git push origin branch1:branch2
+
+Or
+
+[source,bash]
+git push <remote> <branch with new changes>:<branch you are pushing to> 
+
 .Reference
 https://jamesmckay.net/2016/02/signing-git-commits-with-gpg-on-windows/[James McKay] +
 https://git-scm.com/book/id/v2/Git-Tools-Signing-Your-Work[Git-Scm] +
