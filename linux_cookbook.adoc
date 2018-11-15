@@ -210,7 +210,7 @@ ldconfig
 
 === Install Prerequisites
 [source,sh,linenums]
-sudo yum -y install gcc gcc-c++ zlib zlib-devel libffi-devel openssl-devel python-devel sqlite-devel libsqlite3-dev krb5-devel krb5-workstation
+sudo yum -y install gcc gcc-c++ zlib zlib-devel libffi-devel openssl-devel python-devel sqlite-devel libsqlite3-dev krb5-devel krb5-workstation unixODBC unixODBC-devel
 
 NOTE: for python ibm_db
 [source,sh,linenums]
@@ -239,7 +239,7 @@ build-essential opensll libssl-dev libsqlite3-dev zlib1g zlib1g-dev
 
 .ubuntu 16.10+
 [source,sh,linenums]
-sudo apt install build-essential libncursesw5-dev libssl-dev libgdbm-dev libc6-dev libsqlite3-dev libbz2-dev liblzma-dev libreadline-gplv2-dev libdb-dev binutils binfmt-support libxml2-dev libxslt1-dev libkrb5-dev
+sudo apt install build-essential libncursesw5-dev libssl-dev libgdbm-dev libc6-dev libsqlite3-dev libbz2-dev liblzma-dev libreadline-gplv2-dev libdb-dev binutils binfmt-support libxml2-dev libxslt1-dev libkrb5-dev unixodbc-dev
 cd /var/tmp
 wget https://www.python.org/ftp/python/3.7.1/Python-3.7.1.tgz
 tar xf Python-3.*.tgz
