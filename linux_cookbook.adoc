@@ -239,7 +239,8 @@ build-essential opensll libssl-dev libsqlite3-dev zlib1g zlib1g-dev
 
 .ubuntu 16.10+
 [source,sh,linenums]
-sudo apt install build-essential libncursesw5-dev libssl-dev libgdbm-dev libc6-dev libsqlite3-dev libbz2-dev liblzma-dev libreadline-gplv2-dev libdb-dev binutils binfmt-support libxml2-dev libxslt1-dev libkrb5-dev unixodbc-dev
+sudo apt install gcc build-essential libncursesw5-dev libssl-dev libgdbm-dev libc6-dev libsqlite3-dev libbz2-dev liblzma-dev libreadline-gplv2-dev libdb-dev binutils binfmt-support libxml2-dev libxslt1-dev libkrb5-dev unixodbc-dev
+sudo apt install python3.7 python3.7-dev python3-setuptools python3-pip libpython3.7-dev
 cd /var/tmp
 wget https://www.python.org/ftp/python/3.7.1/Python-3.7.1.tgz
 tar xf Python-3.*.tgz
