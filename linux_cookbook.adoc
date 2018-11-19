@@ -253,6 +253,9 @@ echo 'export PATH=${PATH}:/usr/local/bin/' >> /etc/profile.d/python.sh
 // echo '/usr/local/lib' >> /etc/ld.so.conf
 ldconfig
 
+.Microsoft ODBC Driver for SQL Server (pyodbc)
+* https://docs.microsoft.com/en-us/sql/connect/odbc/linux-mac/installing-the-microsoft-odbc-driver-for-sql-server?view=sql-server-2017[Microsoft Docs]
+
 
 suggested:
 python3.7-venv python3.7-doc binutils binfmt-support
