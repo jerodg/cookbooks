@@ -12,6 +12,6 @@
 = Python Cookbook
 
 == Create a Package
-python setup.py sdist
+python3.7 setup.py sdist
 gpg --detach-sign -a dist/*
 twine upload dist/*
