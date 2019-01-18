@@ -185,7 +185,7 @@ Stop Zabbix agent: /etc/init.d/zabbix-agent stop
 Start Zabbix agent: /etc/init.d/zabbix-agent start
 
 == Show Non-Printable Characters with cat
-[source,python,linenums]
+[source,bash,linenums]
 cat -v
 
 == Install Python From Source
@@ -254,7 +254,7 @@ echo 'export PATH=${PATH}:/usr/local/bin/' >> /etc/profile.d/python.sh
 ldconfig
 
 .RHEL 7+ (tested 7.6)
-sudo yum install gcc gcc-c++ zlib zlib-devel libffi-devel openssl-devel python-devel sqlite-devel libsqlite3-dev krb5-devel krb5-workstation unixODBC unixODBC-devel freetds-devel freetds binutils libdb-devel libxml2-devel libxslt1-devel 
+sudo yum install gcc gcc-c++ zlib zlib-devel libffi-devel openssl-devel python-devel sqlite-devel libsqlite3-dev krb5-devel krb5-workstation unixODBC unixODBC-devel freetds-devel freetds binutils libdb-devel libxml2-devel libxslt1-devel
 
 .Microsoft ODBC Driver for SQL Server (pyodbc)
 * https://docs.microsoft.com/en-us/sql/connect/odbc/linux-mac/installing-the-microsoft-odbc-driver-for-sql-server?view=sql-server-2017[Microsoft Docs]
@@ -459,6 +459,10 @@ grep -rnw '/' -e '*VAP_PAYMENTS_ADDITIONAL_DATA*'
 [source,bash,linenums]
 find <path/to/search> -type f | wc -l
 find /var/tmp -type f | wc -l
+
+== Pipenv .venv in Project Folder
+[source,bash]
+PIPENV_VENV_IN_PROJECT=1
 
 https://stackoverflow.com/questions/9157138/recursively-counting-files-in-a-linux-directory#9157162[Stack Overflow]
 
