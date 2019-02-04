@@ -1,0 +1,25 @@
+:doctype: article
+:author: Jerod Gawne
+:email: jerodgawne@gmail.com
+:docdate: February 04, 2019
+:revdate: {docdatetime}
+:description: Windows Cookbook
+:keywords: windows, cookbook
+
+:sectanchors:
+:sectlinks:
+:sectnums:
+:toc:
+:experimental:
+:icons: font
+:checkedbox: pass:normal[{startsb}&#10004;{endsb}]
+:checkbox: pass:normal[{startsb}  {endsb}]
+
+= Windows Cookbook
+
+== Create Symbolic Link
+=== Folder
+To create c:\test\my_folder as link to c:\some_folder\my_folder
+[source,bash]
+mklink /J <link-path> <source-path>
+mklink /J c:\test\my_folder c:\some_folder\my_folder
