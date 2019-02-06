@@ -21,5 +21,9 @@
 === Folder
 To create c:\test\my_folder as link to c:\some_folder\my_folder
 [source,bash]
-mklink /J <link-path> <source-path>
-mklink /J c:\test\my_folder c:\some_folder\my_folder
+mklink /D <link-path> <source-path>
+mklink /D c:\test\my_folder c:\some_folder\my_folder
+
+== Get List of All Active Directory Domain Groups
+[source,cmd]
+net group /domain > domain_groups.txt
