@@ -11,6 +11,9 @@
 
 = Python Cookbook
 
+== Update Python/Prepare for Package Build
+pip3.8 install --upgrade pip setuptools pipenv
+
 == Create a Package
 python3.7 setup.py sdist
 gpg --detach-sign -a dist/*

@@ -201,10 +201,17 @@ wget https://www.python.org/ftp/python/3.7.0/Python-3.7.0b3.tgz
 tar xf Python-3.*.tgz
 cd Python-3.*
 ./configure --enable-optimizations --enable-shared --prefix=/usr/local
+sudo chmod 0777 -R /usr/local/bin
+sudo chmod 0777 -R /usr/local/lib
+sudo chmod 0777 -R /usr/local/include
+sudo chmod 0777 -R /usr/local/share
+sudo chmod 0777 -R /var/tmp/Python-3.*
 sudo make && make altinstall
 strip /usr/local/lib/libpython3.*m.so.1.0
-echo 'export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:/usr/local/lib' >> /etc/profile.d/python.sh
-echo 'export PATH=${PATH}:/usr/local/bin/' >> /etc/profile.d/python.sh
+echo 'export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:/usr/local/lib' >> ~/.bash_aliases
+echo 'export PATH=${PATH}:/usr/local/bin/' >> ~/.bash_aliases
+echo 'alias py38=/usr/local/bin/python3.8' >> ~/.bash_aliases
+echo 'alias pip38=/usr/local/bin/pip3.8' >> ~/.bash_aliases
 echo '/usr/local/lib' >> /etc/ld.so.conf
 ldconfig
 
