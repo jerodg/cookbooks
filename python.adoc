@@ -12,9 +12,11 @@
 = Python Cookbook
 
 == Update Python/Prepare for Package Build
+[source,sh]
 pip3.8 install --upgrade pip setuptools pipenv
 
 == Create a Package
+[source,sh]
 python3.7 setup.py sdist
 gpg --detach-sign -a dist/*
 twine upload dist/*
