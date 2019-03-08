@@ -22,6 +22,22 @@
 *Links* {src-uri}
 
 == Select Appropriate KMS Key
+.Windows Server, version 1809
+|===
+|Operating System | KMS Key
+
+|Windows Server Datacenter |6NMRW-2C8FM-D24W7-TQWMY-CWH2D
+|Windows Server Standard |N2KJX-J94YW-TQVFB-DG9YT-724CC
+|===
+
+.Windows Server, version 1803
+|===
+|Operating System | KMS Key
+
+|Windows Server Datacenter |2HXDN-KRXHB-GPYC7-YCKFJ-7FVDG
+|Windows Server Standard |PTXN8-JFHJM-4WC78-MPCBR-9W4KR
+|===
+
 .Windows Server, version 1709
 |===
 |Operating System | KMS Key
