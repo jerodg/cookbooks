@@ -22,26 +22,32 @@ Code & Information on setting up git on a new computer.
 [source,bash,numbered]
 git config --global user.name "<First Last>"
 git config --global user.email "<user@domain.ext>"
-git config --global core.autocrlf true
+git config --global core.autocrlf false
 gpg --import "<gpg-location>"
 git config --global user.signingkey <keyid>
 git config --global commit.gpgsign true
 git config --global gpg.program "C:\Program Files (x86)\GnuPG\bin\gpg.exe"
+git config --global core.eol lf
+git config --global core.compression 9
+git config --global core.looseCompression 9
+git config --global credential.helper 'cache --timeout=3600'
 
 == Linux
 [source,bash,numbered]
 git config --global user.name "<First Last>"
 git config --global user.email "<user@domain.ext>"
-git config --global core.autocrlf true
+git config --global core.autocrlf false
 gpg --import "<gpg-location>"
 git config --global user.signingkey <keyid>
 git config --global commit.gpgsign true
-
-== Optional for Either
-[source,bash,numbered]
-git config --global http.proxy http://proxyuser:proxypwd@proxy.server.com:8080
-git config --global https.proxy http://proxyuser:proxypwd@proxy.server.com:8080
+git config --global core.eol lf
+git config --global core.compression 9
+git config --global core.looseCompression 9
 git config --global credential.helper 'cache --timeout=3600'
+
+== Reset branch to remote
+[source,bash,numbered]
+git reset --hard HEAD
 
 == Push Commits to Another Branch
 [source,bash]
