@@ -21,6 +21,8 @@
 *Tags* {keywords} +
 *Links* {src-uri}
 
+https://docs.microsoft.com/en-us/windows-server/get-started/kmsclientkeys
+
 == Select Appropriate KMS Key
 === Semi-Annual Channel
 .Windows Server, version 1903/1809
