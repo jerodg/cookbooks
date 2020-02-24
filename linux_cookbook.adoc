@@ -473,6 +473,14 @@ PIPENV_VENV_IN_PROJECT=1
 
 https://stackoverflow.com/questions/9157138/recursively-counting-files-in-a-linux-directory#9157162[Stack Overflow]
 
+== CLI get drive serial
+[source,bash]
+udevadm info --query=all --name=/dev/sda | grep ID_SERIAL
+
+== Install qbittorrent on ubuntu server
+[source,bash]
+
+
 == Reference:
 https://www.git-tower.com/learn/git/faq/change-author-name-email[Git-Tower]
 https://stackoverflow.com/questions/27022373/python3-importerror-no-module-named-ctypes-when-using-value-from-module-mul[Stack Overflow] +
